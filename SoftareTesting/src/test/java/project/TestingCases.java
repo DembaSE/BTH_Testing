@@ -21,12 +21,11 @@ public class TestingCases {
 	
 	
 	/**
-	 * The following tests represent Test-Driven Development (TDD) for a website login page.
-	 * 
+	 * The following tests represent Test-Driven Development (TDD) for a E commerce website login page.
 	 * Test cases include validation of username, email, and password requirements:
 	 * - Username must contain at least one capital letter, one special character, and one number.
-	 * - Email must follow standard email format (e.g., user@example.com).
-	 * - Password must be at least 8 characters long.
+	 * - Email must follow standard email format (e.g. @email.com).
+	 * - Password must be at least 8 characters long and field.
 	 */ 
 	
 	
@@ -174,12 +173,22 @@ public class TestingCases {
 	        basket.removeProduct("Apple Watch");
 	        assertEquals(0, basket.getProductCount());
 	    }
+	    
+	    @Test
+	    public void testTotalRightPrice() {
+	        basket.addProduct("Apple TV", 2598.99);
+	        basket.addProduct("Samsung Galaxy s23 Ultra", 1499.99);
+	        basket.addProduct("Netflix subscription", 147.49);
+	        assertEquals(4246.47, basket.getTotalPrice(), 0.01); // give a right total price 
+	    }
 
 	    @Test
-	    public void testTotalPrice() {
+	    public void testTotalWrongPrice() {
 	        basket.addProduct("Apple TV", 2598.99);
 	        basket.addProduct("Samsung Galaxy s23 Ultra", 1499.99);
 	        basket.addProduct("Netflix subscription", 147.49);
 	        assertEquals(5.47, basket.getTotalPrice(), 0.01); // give a wrong total price to check CI/CD Tools on github
 	    }
+	    
+	   
 }

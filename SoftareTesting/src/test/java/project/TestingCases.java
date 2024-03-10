@@ -182,13 +182,7 @@ public class TestingCases {
 	        assertEquals(4246.47, basket.getTotalPrice(), 0.01); // give a right total price 
 	    }
 
-	    @Test
-	    public void testTotalWrongPrice() {
-	        basket.addProduct("Apple TV", 2598.99);
-	        basket.addProduct("Samsung Galaxy s23 Ultra", 1499.99);
-	        basket.addProduct("Netflix subscription", 147.49);
-	        assertEquals(5.47, basket.getTotalPrice(), 0.01); // give a wrong total price to check CI/CD Tools on github
-	    }
+	   
 	    
 	   
 }

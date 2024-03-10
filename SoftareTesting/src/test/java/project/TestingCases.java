@@ -182,7 +182,7 @@ public class TestingCases {
 	        assertEquals(4246.47, basket.getTotalPrice(), 0.01); // give a right total price 
 	    }
 
-	   
+	   //End of test
 	    
 	   
 }

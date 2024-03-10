@@ -2,6 +2,7 @@ package project;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class TestingCases {
@@ -45,7 +46,7 @@ public class TestingCases {
 
 	    @Test
 	    public void testValidEmailWithDotCoSe() {
-	        assertTrue(EmailValidator.isValidEmail("user123@example.co.se"));
+	        assertTrue(EmailValidator.isValidEmail("demba24@example.co.se"));
 	    }
 
 	    @Test
@@ -54,8 +55,8 @@ public class TestingCases {
 	    }
 
 	    @Test
-	    public void testValidEmailWithDotIo() {
-	        assertTrue(EmailValidator.isValidEmail("user@example.io"));
+	    public void testValidEmailWithDotCom1() {
+	        assertTrue(EmailValidator.isValidEmail("Demba@gmail.com"));
 	    }
 
 	    @Test
@@ -65,22 +66,22 @@ public class TestingCases {
 
 	    @Test
 	    public void testInvalidEmailNoDomain() {
-	        assertFalse(EmailValidator.isValidEmail("user@example"));
+	        assertFalse(EmailValidator.isValidEmail("demba@example"));
 	    }
 
 	    @Test
 	    public void testInvalidEmailNoTopLevelDomain() {
-	        assertFalse(EmailValidator.isValidEmail("user@.com"));
+	        assertFalse(EmailValidator.isValidEmail("demba@.com"));
 	    }
 
 	    @Test
 	    public void testInvalidEmailDomainStartingWithSlash() {
-	        assertFalse(EmailValidator.isValidEmail("user@/example.com"));
+	        assertFalse(EmailValidator.isValidEmail("demba@/example.com"));
 	    }
 
 	    @Test
 	    public void testInvalidEmailDomainEndingWithSlash() {
-	        assertFalse(EmailValidator.isValidEmail("user@example/.com"));
+	        assertFalse(EmailValidator.isValidEmail("demba@example/.com"));
 	    }
 	    
 	    
@@ -97,12 +98,12 @@ public class TestingCases {
 
 	    @Test
 	    public void testValidUsernameWithCapitalLetterSpecialCharAndNumber_AnotherExample() {
-	        assertTrue(UsernameValidator.isValid("John_Doe@2022"));
+	        assertTrue(UsernameValidator.isValid("John_Doe24@google"));
 	    }
 
 	    @Test
 	    public void testValidUsernameWithCapitalLetterSpecialCharAndNumber_AnotherExample2() {
-	        assertTrue(UsernameValidator.isValid("Alice#Smith2022"));
+	        assertTrue(UsernameValidator.isValid("Paul#Smith2022"));
 	    }
 
 	    @Test
@@ -112,16 +113,73 @@ public class TestingCases {
 
 	    @Test
 	    public void testInvalidUsername_MissingSpecialCharAndNumber() {
-	        assertFalse(UsernameValidator.isValid("Password"));
+	        assertFalse(UsernameValidator.isValid("mARCHAD"));
 	    }
 
 	    @Test
 	    public void testInvalidUsername_MissingNumber() {
-	        assertFalse(UsernameValidator.isValid("User@"));
+	        assertFalse(UsernameValidator.isValid("UserSE@"));
 	    }
 
 	    @Test
 	    public void testInvalidUsername_MissingCapitalLetterAndSpecialChar() {
 	        assertFalse(UsernameValidator.isValid("user123"));
+	    }
+	    
+	    
+	    @Test
+	    public void testInvalidPassword_MissingComplexity() {
+	      String password = "pori123"; // Password with less than minimum length and only digits
+	      assertFalse(PasswordValidator.validatePassword(password));
+	    }
+
+	    @Test
+	    public void testInvalidPassword_SequentialCharacters() {
+	      String password = "sweden123"; // Password with sequential lowercase letters and numbers
+	      assertFalse(PasswordValidator.validatePassword(password));
+	    }
+
+	    @Test
+	    public void testValidPassword_StrongPassword() {
+	      String password = "Da$$w0rd1984!"; // Password with uppercase, lowercase, number, and special character
+	      assertTrue(PasswordValidator.validatePassword(password));
+	    }
+	    
+	    
+	    /**
+	     * Test cases for the Basket class, which manages products.
+	     * These tests ensure that the Basket class behaves as expected, including adding and removing products,
+	     * as well as calculating the total price of products in the basket.
+	     */
+	    
+	    private Basket basket;
+	    /**
+	     * Sets up the test environment before each test method is executed.
+	     * Initializes a new Basket instance.
+	     */
+	    @Before
+	    public void setUp() {
+	        basket = new Basket();
+	    }
+
+	    @Test
+	    public void testAddProduct() {
+	        basket.addProduct("Apple Iphone", 1099.99);
+	        assertEquals(1, basket.getProductCount());
+	    }
+
+	    @Test
+	    public void testRemoveProduct() {
+	        basket.addProduct("Apple Watch", 4990.99);
+	        basket.removeProduct("Apple Watch");
+	        assertEquals(0, basket.getProductCount());
+	    }
+
+	    @Test
+	    public void testTotalPrice() {
+	        basket.addProduct("Apple TV", 2598.99);
+	        basket.addProduct("Samsung Galaxy s23 Ultra", 1499.99);
+	        basket.addProduct("Netflix subscription", 147.49);
+	        assertEquals(5.47, basket.getTotalPrice(), 0.01); // give a wrong total price to check CI/CD Tools on github
 	    }
 }

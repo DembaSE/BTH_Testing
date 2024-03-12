@@ -150,7 +150,6 @@ public class TestingCases {
 	     * These tests ensure that the Basket class behaves as expected, including adding and removing products,
 	     * as well as calculating the total price of products in the basket.
 	     */
-	    private int name=0; //test purposes
 	    private Basket basket;
 	    /**
 	     * Sets up the test environment before each test method is executed.

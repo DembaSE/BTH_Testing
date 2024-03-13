@@ -180,7 +180,7 @@ public class TestingCases {
 	        basket.addProduct("Netflix subscription", 147.49);
 	        assertEquals(4246.47, basket.getTotalPrice(), 0.01); // give a right total price 
 	    }
-	    // demonstration build 
+	    
 
 	    
 	   
